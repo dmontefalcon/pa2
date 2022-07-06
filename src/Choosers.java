@@ -1,4 +1,3 @@
-
 class LongWordChooser implements MyChooser<String> {
 
 	@Override
