@@ -55,5 +55,71 @@ public class TestLists {
 		MyList<String> string_s = makeList(string_input);
 		assertArrayEquals(string_input, string_s.toArray());
 	}
+	
+	@Test
+	public <E> void testLlistInt() {
+		// Using the generic list to create an Integer list
+		Integer[] indepVar = {1, 2, 3};
+		LinkedGL<Integer> list = new LinkedGL<Integer>(indepVar);
+		E[] expVar = (E[]) list.toArray();
+		assertArrayEquals(indepVar, expVar);
+	}
+	
+	@Test
+	public <E> void testLlistStr() {
+		String[] indepVar = {"Hello", "Hi", "Greetings"};
+		LinkedGL<String> list = new LinkedGL<String>(indepVar);
+		E[] expVar = (E[]) list.toArray();
+		assertArrayEquals(indepVar, expVar);
+	}
+	
+	@Test
+	public <E> void testCompArrInt()	 {
+		Integer[] indepVar = {5, 4, 3};
+		ArrayGL<Integer> list = new ArrayGL<Integer>(indepVar);
+		E[] expVar = (E[]) list.toArray();
+		assertArrayEquals(indepVar, expVar);
+	}
+	
+	@Test
+	public <E> void testCompArrStr()	 {
+		String[] indepVar = {"Leg", "Arm", "Neck"};
+		ArrayGL<String> list = new ArrayGL<String>(indepVar);
+		E[] expVar = (E[]) list.toArray();
+		assertArrayEquals(indepVar, expVar);
+	}
+	
+	@Test
+	public <E> void testTransformersArrStr() {
+		String[] indepVar = {"Leg", "Arm", "Neck"};
+		ArrayGL<String> list = new ArrayGL<String>(indepVar);
+		list.transformAll(new UpperCaseTransformer());
+		E[] expVar = (E[]) list.toArray();
+		String[] var = {"LEG", "ARM", "NECK"};
+		assertArrayEquals(var, expVar);
+	}
+	
+	@Test
+	public <E> void testTransformersArrInt() {
+		Integer[] indepVar = {5, 10, 15};
+		ArrayGL<Integer> list = new ArrayGL<Integer>(indepVar);
+		list.transformAll(new additionTransformer());
+		E[] expVar = (E[]) list.toArray();
+		Integer[] var = {6, 11, 16};
+		assertArrayEquals(var, expVar);
+	}
+	
+	@Test
+	public <E> void testTransformersLlistStr() {
+		String[] indepVar = {"Leg", "Arm", "Neck"};
+		LinkedGL<String> list = new LinkedGL<String>(indepVar);
+		list.transformAll(new UpperCaseTransformer());
+		E[] expVar = (E[]) list.toArray();
+		String[] var = {"LEG", "ARM", "NECK"};
+		assertArrayEquals(var, expVar);
+	}
+	
+	
+	
 
 }
